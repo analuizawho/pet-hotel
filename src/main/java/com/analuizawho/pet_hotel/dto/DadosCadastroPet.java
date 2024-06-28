@@ -9,11 +9,11 @@ import jakarta.validation.constraints.NotBlank;
 public record DadosCadastroPet(@NotBlank
                                String nome,
 
-                               @NotBlank
-                               String raca,
-
                                @Enumerated
                                Animal tipo,
+
+                               @NotBlank
+                               String raca,
 
                                float peso,
 
