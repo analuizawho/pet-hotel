@@ -4,6 +4,7 @@ import com.analuizawho.pet_hotel.dto.DadosAtualizarPet;
 import com.analuizawho.pet_hotel.dto.DadosCadastroPet;
 import com.analuizawho.pet_hotel.dto.DadosDetalhamentoPet;
 import com.analuizawho.pet_hotel.dto.DadosListagemPet;
+import com.analuizawho.pet_hotel.exception.NumeroEmStringException;
 import com.analuizawho.pet_hotel.service.PetService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -69,4 +70,5 @@ public class PetController {
         petService.inativar(id);
         return ResponseEntity.noContent().build();
     }
+
 }

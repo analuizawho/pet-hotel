@@ -4,6 +4,7 @@ import com.analuizawho.pet_hotel.dto.DadosAtualizarPet;
 import com.analuizawho.pet_hotel.dto.DadosCadastroPet;
 import com.analuizawho.pet_hotel.dto.DadosDetalhamentoPet;
 import com.analuizawho.pet_hotel.dto.DadosListagemPet;
+import com.analuizawho.pet_hotel.exception.NumeroEmStringException;
 import com.analuizawho.pet_hotel.mapper.PetMapper;
 import com.analuizawho.pet_hotel.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class PetService {
 
     public DadosDetalhamentoPet cadastrar(@RequestBody DadosCadastroPet dto, UriComponentsBuilder uriBuilder){
         var newPet = this.petMapper.paraPet(dto);
+        validarCampo(dto);
         var pet = this.petRepository.save(newPet);
 
         return petMapper.paraDetalhamento(pet);
@@ -58,5 +60,19 @@ public class PetService {
     public void inativar(Long id){
         var pet = this.petRepository.getReferenceById(id);
         pet.inativar();
+    }
+
+    private void validarCampo(DadosCadastroPet dadosPet) {
+        if (dadosPet.nome().matches(".*\\d.*")) {
+            throw new NumeroEmStringException("nome", "Favor inserir apenas letras.");
+        }
+
+        if (dadosPet.doenca().matches(".*\\d.*")) {
+            throw new NumeroEmStringException("doenca", "Favor inserir apenas letras.");
+        }
+
+        if (dadosPet.raca().matches(".*\\d.*")) {
+            throw new NumeroEmStringException("raca", "Favor inserir apenas letras.");
+        }
     }
 }
