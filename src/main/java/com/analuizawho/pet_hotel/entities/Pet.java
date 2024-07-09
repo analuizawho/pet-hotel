@@ -9,8 +9,8 @@ import jakarta.validation.Valid;
 
 import java.util.Objects;
 
-@Table
-@Entity
+@Table(name = "Pet")
+@Entity(name = "pet")
 public class Pet {
 
     @Id

@@ -9,6 +9,5 @@ doenca varchar(100) not null,
 castracao varchar(100) not null,
 sexo varchar(100) not null,
 ativo tinyint default 1,
-
 primary key(id)
 );

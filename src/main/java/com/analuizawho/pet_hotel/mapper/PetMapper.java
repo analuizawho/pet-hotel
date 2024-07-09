@@ -15,7 +15,6 @@ public interface PetMapper {
 
     PetMapper INSTANCE = Mappers.getMapper(PetMapper.class);
 
-    @Mapping(target = "id", ignore = true)
     DadosDetalhamentoPet paraDetalhamento(Pet pet);
 
     Pet paraPet(DadosCadastroPet dadosCadastroPet);

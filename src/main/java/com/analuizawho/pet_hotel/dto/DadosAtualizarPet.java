@@ -1,6 +1,10 @@
 package com.analuizawho.pet_hotel.dto;
 
-public record DadosAtualizarPet(Long id,
+import jakarta.validation.constraints.NotNull;
+
+public record DadosAtualizarPet(
+                                @NotNull
+                                Long id,
 
                                 String nome,
 

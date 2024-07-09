@@ -12,7 +12,7 @@ import java.util.Date;
 @RestControllerAdvice
 public class TratadorDeErros {
 
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
     @ExceptionHandler(NumeroEmStringException.class)
     ResponseEntity<DadosDoErro> tratadorNumeroEmString(NumeroEmStringException exception){
