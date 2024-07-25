@@ -1,30 +1,38 @@
 package com.analuizawho.pet_hotel.entities;
 
 import com.analuizawho.pet_hotel.entities.enums.*;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "hospedagem")
+public class Hospedagem{
 
-public class Hospedagem extends Pet{
-
-    int numeroHospedagem;
-    LocalDate checkInDate = LocalDate.now();
-    LocalDate checkOutDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long numeroHospedagem;
+    @Column(name = "check_in_data", nullable = false)
+    private LocalDateTime checkInData;
+    @Column(name = "check_out_data", nullable = false)
+    private LocalDateTime checkOutData;
     @Enumerated(EnumType.STRING)
-    Acomodacao acomodacao;
+    private Acomodacao acomodacao;
     @Enumerated(EnumType.STRING)
-    ServicoExtra servicoExtra;
+    private ServicoExtra servicoExtra;
+
+    @ManyToOne()
+    @JoinColumn(name = "pet_id", nullable = false)
+    Pet pet;
 
     public Hospedagem() {
     }
 
-    public Hospedagem(Castracao castracao, Boolean ativo, String doenca, float idade, String nome, float peso, String raca, Sexo sexo, Animal tipo, Acomodacao acomodacao, LocalDate checkInDate, LocalDate checkOutDate, int numeroHospedagem, ServicoExtra servicoExtra) {
-        super(castracao, ativo, doenca, idade, nome, peso, raca, sexo, tipo);
+    public Hospedagem(Acomodacao acomodacao, LocalDateTime checkInData, LocalDateTime checkOutData, Long numeroHospedagem, ServicoExtra servicoExtra) {
         this.acomodacao = acomodacao;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
+        this.checkInData = checkInData;
+        this.checkOutData = checkOutData;
         this.numeroHospedagem = numeroHospedagem;
         this.servicoExtra = servicoExtra;
     }
@@ -37,35 +45,55 @@ public class Hospedagem extends Pet{
         this.acomodacao = acomodacao;
     }
 
-    public LocalDate getCheckInDate() {
-        return checkInDate;
-    }
-
-    public void setCheckInDate(LocalDate checkInDate) {
-        this.checkInDate = checkInDate;
-    }
-
-    public LocalDate getCheckOutDate() {
-        return checkOutDate;
-    }
-
-    public void setCheckOutDate(LocalDate checkOutDate) {
-        this.checkOutDate = checkOutDate;
-    }
-
-    public int getNumeroHospedagem() {
-        return numeroHospedagem;
-    }
-
-    public void setNumeroHospedagem(int numeroHospedagem) {
-        this.numeroHospedagem = numeroHospedagem;
-    }
-
     public ServicoExtra getServicoExtra() {
         return servicoExtra;
     }
 
     public void setServicoExtra(ServicoExtra servicoExtra) {
         this.servicoExtra = servicoExtra;
+    }
+
+    public Long getNumeroHospedagem() {
+        return numeroHospedagem;
+    }
+
+    public void setNumeroHospedagem(Long numeroHospedagem) {
+        this.numeroHospedagem = numeroHospedagem;
+    }
+
+    public LocalDateTime getCheckInData() {
+        return checkInData;
+    }
+
+    public void setCheckInData(LocalDateTime checkInData) {
+        this.checkInData = checkInData;
+    }
+
+    public LocalDateTime getCheckOutData() {
+        return checkOutData;
+    }
+
+    public void setCheckOutData(LocalDateTime checkOutData) {
+        this.checkOutData = checkOutData;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    @Override
+    public String toString() {
+        return "Hospedagem{" +
+                "acomodacao=" + acomodacao +
+                ", numeroHospedagem=" + numeroHospedagem +
+                ", checkInData=" + checkInData +
+                ", checkOutData=" + checkOutData +
+                ", servicoExtra=" + servicoExtra +
+                ", pet=" + pet +
+                '}';
     }
 }

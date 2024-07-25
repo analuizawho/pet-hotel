@@ -23,7 +23,7 @@ public class PetService {
     @Autowired
     PetMapper petMapper;
 
-    public DadosDetalhamentoPet cadastrar(@RequestBody DadosCadastroPet dto, UriComponentsBuilder uriBuilder){
+    public DadosDetalhamentoPet cadastrar(@RequestBody DadosCadastroPet dto){
         var newPet = this.petMapper.paraPet(dto);
         validarCampo(dto);
         var pet = this.petRepository.save(newPet);

@@ -9,8 +9,8 @@ import jakarta.validation.Valid;
 
 import java.util.Objects;
 
-@Table(name = "Pet")
-@Entity(name = "pet")
+@Entity
+@Table(name = "pet")
 public class Pet {
 
     @Id
@@ -32,10 +32,11 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(Castracao castracao, Boolean ativo, String doenca, float idade, String nome, float peso, String raca, Sexo sexo, Animal tipo) {
-        this.castracao = castracao;
+    public Pet(Boolean ativo, Castracao castracao, String doenca, Long id, float idade, String nome, float peso, String raca, Sexo sexo, Animal tipo) {
         this.ativo = ativo;
+        this.castracao = castracao;
         this.doenca = doenca;
+        this.id = id;
         this.idade = idade;
         this.nome = nome;
         this.peso = peso;

@@ -4,5 +4,6 @@ public enum ServicoExtra {
 
     BANHO,
     TOSA,
-    BANHO_TOSA
+    BANHO_TOSA,
+    NENHUM
 }

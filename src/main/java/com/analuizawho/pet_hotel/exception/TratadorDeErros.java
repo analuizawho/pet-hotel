@@ -22,11 +22,11 @@ public class TratadorDeErros {
         return ResponseEntity.badRequest().body(dadosDoErro);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    /*@ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> tratador400(MethodArgumentNotValidException exception){
         var erros = exception.getFieldErrors();
         return ResponseEntity.badRequest().body(erros.stream().map(DadosDoErro::new).toList());
-    }
+    }*/
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<?> tratador404(){

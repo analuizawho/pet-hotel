@@ -25,9 +25,8 @@ public class PetController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<DadosDetalhamentoPet> cadastrar(@RequestBody @Valid DadosCadastroPet dto,
-                                                          UriComponentsBuilder uriBuilder){
-        var pet = this.petService.cadastrar(dto, uriBuilder);
+    public ResponseEntity<DadosDetalhamentoPet> cadastrar(@RequestBody @Valid DadosCadastroPet dto){
+        var pet = this.petService.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(pet);
     }
 

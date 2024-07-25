@@ -3,7 +3,6 @@ package com.analuizawho.pet_hotel.dto;
 import com.analuizawho.pet_hotel.entities.enums.Animal;
 import com.analuizawho.pet_hotel.entities.enums.Castracao;
 import com.analuizawho.pet_hotel.entities.enums.Sexo;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,8 +16,10 @@ public record DadosCadastroPet(
                                @NotBlank
                                String raca,
 
+                               @NotNull
                                float peso,
 
+                               @NotNull
                                float idade,
 
                                @NotBlank
