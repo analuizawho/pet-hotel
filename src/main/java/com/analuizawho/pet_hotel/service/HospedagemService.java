@@ -26,7 +26,7 @@ public class HospedagemService {
 
     public DadosDetalhamentoHospedagem checkIn(DadosCheckInHospedagem dto){
         Pet pet = petRepository.findById(dto.petId())
-                .orElseThrow(() -> new RuntimeException("Pet not found"));
+                .orElseThrow(() -> new ErrosDaApiException("petId", "Insira um petId válido"));
         var newHospedagem = hospedagemMapper.paraHospedagem(dto);
         newHospedagem.setPet(pet);
         validarData(newHospedagem);
@@ -43,6 +43,9 @@ public class HospedagemService {
     public DadosDetalhamentoHospedagem atualizar(Long id, DadosAtualizarHospedagem dto){
         var hospedagem = hospedagemRepository.getReferenceById(id);
         hospedagem.atualizarInformacoes(dto);
+        Pet pet = petRepository.findById(dto.petId())
+                .orElseThrow(() -> new ErrosDaApiException("petId", "Insira um petId válido"));
+        hospedagem.setPet(pet);
         validarData(hospedagem);
         hospedagem = hospedagemRepository.save(hospedagem);
         return hospedagemMapper.paraDetalhamento(hospedagem);
