@@ -1,10 +1,9 @@
 package com.analuizawho.pet_hotel.service;
 
-import com.analuizawho.pet_hotel.dto.DadosCheckInHospedagem;
-import com.analuizawho.pet_hotel.dto.DadosDetalhamentoHospedagem;
-import com.analuizawho.pet_hotel.dto.DadosListagemHospedagem;
+import com.analuizawho.pet_hotel.dto.*;
 import com.analuizawho.pet_hotel.entities.Hospedagem;
 import com.analuizawho.pet_hotel.entities.Pet;
+import com.analuizawho.pet_hotel.exception.ErrosDaApiException;
 import com.analuizawho.pet_hotel.mapper.HospedagemMapper;
 import com.analuizawho.pet_hotel.repository.HospedagemRepository;
 import com.analuizawho.pet_hotel.repository.PetRepository;
@@ -39,4 +38,13 @@ public class HospedagemService {
         var hospedagem = hospedagemRepository.findAll();
         return hospedagemMapper.paraListagem(hospedagem);
     }
+
+    public DadosDetalhamentoHospedagem atualizar(Long id, DadosAtualizarHospedagem dto){
+        var hospedagem = hospedagemRepository.getReferenceById(id);
+        hospedagem.atualizarInformacoes(dto);
+        hospedagem = hospedagemRepository.save(hospedagem);
+        return hospedagemMapper.paraDetalhamento(hospedagem);
+    }
+
+
 }

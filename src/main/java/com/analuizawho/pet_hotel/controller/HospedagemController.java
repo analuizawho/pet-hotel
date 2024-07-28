@@ -1,8 +1,6 @@
 package com.analuizawho.pet_hotel.controller;
 
-import com.analuizawho.pet_hotel.dto.DadosCheckInHospedagem;
-import com.analuizawho.pet_hotel.dto.DadosDetalhamentoHospedagem;
-import com.analuizawho.pet_hotel.dto.DadosListagemHospedagem;
+import com.analuizawho.pet_hotel.dto.*;
 import com.analuizawho.pet_hotel.service.HospedagemService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -30,6 +28,12 @@ public class HospedagemController {
     @GetMapping
     public ResponseEntity<List<DadosListagemHospedagem>> listar(){
         var hospedagem = hospedagemService.listar();
+        return ResponseEntity.ok(hospedagem);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoHospedagem> atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizarHospedagem dto){
+        var hospedagem = hospedagemService.atualizar(id, dto);
         return ResponseEntity.ok(hospedagem);
     }
 }

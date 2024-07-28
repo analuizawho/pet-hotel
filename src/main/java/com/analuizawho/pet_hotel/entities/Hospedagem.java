@@ -1,8 +1,11 @@
 package com.analuizawho.pet_hotel.entities;
 
+import com.analuizawho.pet_hotel.dto.DadosAtualizarHospedagem;
+import com.analuizawho.pet_hotel.dto.DadosAtualizarPet;
 import com.analuizawho.pet_hotel.entities.enums.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 
 import java.time.LocalDateTime;
 
@@ -95,5 +98,15 @@ public class Hospedagem{
                 ", servicoExtra=" + servicoExtra +
                 ", pet=" + pet +
                 '}';
+    }
+
+    public void atualizarInformacoes(@Valid DadosAtualizarHospedagem dados) {
+        if(dados.checkInData() != null){
+            this.checkInData = dados.checkInData();
+        }
+
+        if(dados.checkOutData() != null){
+            this.checkOutData = dados.checkOutData();
+        }
     }
 }
