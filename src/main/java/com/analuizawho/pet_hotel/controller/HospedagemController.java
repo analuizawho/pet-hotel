@@ -31,6 +31,12 @@ public class HospedagemController {
         return ResponseEntity.ok(hospedagem);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoHospedagem> detalhar(@PathVariable Long id){
+        var hospedagem = hospedagemService.detalhar(id);
+        return ResponseEntity.ok(hospedagem);
+    }
+
     @PutMapping("/{id}")
     @Transactional
     public ResponseEntity<DadosDetalhamentoHospedagem> atualizar(@PathVariable Long id,

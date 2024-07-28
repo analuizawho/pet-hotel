@@ -40,6 +40,11 @@ public class HospedagemService {
         return hospedagemMapper.paraListagem(hospedagem);
     }
 
+    public DadosDetalhamentoHospedagem detalhar(Long id){
+        var hospedagem = hospedagemRepository.getReferenceById(id);
+        return hospedagemMapper.paraDetalhamento(hospedagem);
+    }
+
     public DadosDetalhamentoHospedagem atualizar(Long id, DadosAtualizarHospedagem dto){
         var hospedagem = hospedagemRepository.getReferenceById(id);
         hospedagem.atualizarInformacoes(dto);
