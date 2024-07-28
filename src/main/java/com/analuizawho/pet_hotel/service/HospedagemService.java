@@ -55,6 +55,10 @@ public class HospedagemService {
         return hospedagemMapper.paraDetalhamento(hospedagem);
     }
 
+    public void excluir(Long id){
+        hospedagemRepository.deleteById(id);
+    }
+
     public void validarData(Hospedagem hospedagem){
         if(hospedagem.getCheckInData().isAfter(hospedagem.getCheckOutData())){
             throw new ErrosDaApiException("checkIn/checkOut", "O checkIn não pode ser antes do checkOut");

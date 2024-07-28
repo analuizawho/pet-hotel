@@ -32,6 +32,7 @@ public class HospedagemController {
     }
 
     @PutMapping("/{id}")
+    @Transactional
     public ResponseEntity<DadosDetalhamentoHospedagem> atualizar(@PathVariable Long id,
                                                                  @RequestBody @Valid DadosAtualizarHospedagem dto){
         var hospedagem = hospedagemService.atualizar(id, dto);
@@ -39,10 +40,18 @@ public class HospedagemController {
     }
 
     @PutMapping("servico-extra/{id}")
+    @Transactional
     public ResponseEntity<DadosDetalhamentoHospedagem> adicionarServicoExtra(@PathVariable Long id,
                                                                              @RequestBody @Valid DadosAtualizarServicoExtra dto){
         var hospedagem = hospedagemService.adicionarServicoExtra(id, dto);
         return ResponseEntity.ok(hospedagem);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Void> excluir(@PathVariable Long id){
+        hospedagemService.excluir(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
