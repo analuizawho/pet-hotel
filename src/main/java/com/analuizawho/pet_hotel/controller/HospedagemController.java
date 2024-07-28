@@ -32,8 +32,17 @@ public class HospedagemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DadosDetalhamentoHospedagem> atualizar(@PathVariable Long id, @RequestBody @Valid DadosAtualizarHospedagem dto){
+    public ResponseEntity<DadosDetalhamentoHospedagem> atualizar(@PathVariable Long id,
+                                                                 @RequestBody @Valid DadosAtualizarHospedagem dto){
         var hospedagem = hospedagemService.atualizar(id, dto);
         return ResponseEntity.ok(hospedagem);
     }
+
+    @PutMapping("servico-extra/{id}")
+    public ResponseEntity<DadosDetalhamentoHospedagem> adicionarServicoExtra(@PathVariable Long id,
+                                                                             @RequestBody @Valid DadosAtualizarServicoExtra dto){
+        var hospedagem = hospedagemService.adicionarServicoExtra(id, dto);
+        return ResponseEntity.ok(hospedagem);
+    }
+
 }

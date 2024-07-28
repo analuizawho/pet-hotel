@@ -43,10 +43,14 @@ public class HospedagemService {
     public DadosDetalhamentoHospedagem atualizar(Long id, DadosAtualizarHospedagem dto){
         var hospedagem = hospedagemRepository.getReferenceById(id);
         hospedagem.atualizarInformacoes(dto);
-        Pet pet = petRepository.findById(dto.petId())
-                .orElseThrow(() -> new ErrosDaApiException("petId", "Insira um petId válido"));
-        hospedagem.setPet(pet);
         validarData(hospedagem);
+        hospedagem = hospedagemRepository.save(hospedagem);
+        return hospedagemMapper.paraDetalhamento(hospedagem);
+    }
+
+    public DadosDetalhamentoHospedagem adicionarServicoExtra(Long id, DadosAtualizarServicoExtra dto){
+        var hospedagem = hospedagemRepository.getReferenceById(id);
+        hospedagem.atualizarServicoExtra(dto);
         hospedagem = hospedagemRepository.save(hospedagem);
         return hospedagemMapper.paraDetalhamento(hospedagem);
     }

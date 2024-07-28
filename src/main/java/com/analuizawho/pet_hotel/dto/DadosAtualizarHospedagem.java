@@ -7,8 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
-public record DadosAtualizarHospedagem(@NotNull Long petId,
-                                       @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+public record DadosAtualizarHospedagem(@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
                                        LocalDateTime checkInData,
                                        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
                                        LocalDateTime checkOutData) {
