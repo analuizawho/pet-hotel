@@ -29,6 +29,7 @@ public class HospedagemService {
                 .orElseThrow(() -> new RuntimeException("Pet not found"));
         var newHospedagem = hospedagemMapper.paraHospedagem(dto);
         newHospedagem.setPet(pet);
+        validarData(newHospedagem);
         var hospedagem = hospedagemRepository.save(newHospedagem);
 
         return hospedagemMapper.paraDetalhamento(hospedagem);
@@ -42,9 +43,15 @@ public class HospedagemService {
     public DadosDetalhamentoHospedagem atualizar(Long id, DadosAtualizarHospedagem dto){
         var hospedagem = hospedagemRepository.getReferenceById(id);
         hospedagem.atualizarInformacoes(dto);
+        validarData(hospedagem);
         hospedagem = hospedagemRepository.save(hospedagem);
         return hospedagemMapper.paraDetalhamento(hospedagem);
     }
 
+    public void validarData(Hospedagem hospedagem){
+        if(hospedagem.getCheckInData().isAfter(hospedagem.getCheckOutData())){
+            throw new ErrosDaApiException("checkIn/checkOut", "O checkIn não pode ser antes do checkOut");
+        }
+    }
 
 }

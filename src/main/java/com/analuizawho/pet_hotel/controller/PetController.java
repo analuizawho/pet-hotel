@@ -4,7 +4,6 @@ import com.analuizawho.pet_hotel.dto.DadosAtualizarPet;
 import com.analuizawho.pet_hotel.dto.DadosCadastroPet;
 import com.analuizawho.pet_hotel.dto.DadosDetalhamentoPet;
 import com.analuizawho.pet_hotel.dto.DadosListagemPet;
-import com.analuizawho.pet_hotel.exception.NumeroEmStringException;
 import com.analuizawho.pet_hotel.service.PetService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 

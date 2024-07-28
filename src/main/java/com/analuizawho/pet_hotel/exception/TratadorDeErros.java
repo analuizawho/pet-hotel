@@ -2,7 +2,6 @@ package com.analuizawho.pet_hotel.exception;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -14,8 +13,8 @@ public class TratadorDeErros {
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-    @ExceptionHandler(NumeroEmStringException.class)
-    ResponseEntity<DadosDoErro> tratadorNumeroEmString(NumeroEmStringException exception){
+    @ExceptionHandler(ErrosDaApiException.class)
+    ResponseEntity<DadosDoErro> tratadorNumeroEmString(ErrosDaApiException exception){
         Date data = new Date();
         String dataFormatada = sdf.format(data);
         DadosDoErro dadosDoErro = new DadosDoErro(dataFormatada, exception.getMessage(), exception.getCampo());

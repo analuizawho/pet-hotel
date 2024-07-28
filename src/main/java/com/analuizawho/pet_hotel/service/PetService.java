@@ -4,13 +4,12 @@ import com.analuizawho.pet_hotel.dto.DadosAtualizarPet;
 import com.analuizawho.pet_hotel.dto.DadosCadastroPet;
 import com.analuizawho.pet_hotel.dto.DadosDetalhamentoPet;
 import com.analuizawho.pet_hotel.dto.DadosListagemPet;
-import com.analuizawho.pet_hotel.exception.NumeroEmStringException;
+import com.analuizawho.pet_hotel.exception.ErrosDaApiException;
 import com.analuizawho.pet_hotel.mapper.PetMapper;
 import com.analuizawho.pet_hotel.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -64,15 +63,15 @@ public class PetService {
 
     private void validarCampo(DadosCadastroPet dadosPet) {
         if (dadosPet.nome().matches(".*\\d.*")) {
-            throw new NumeroEmStringException("nome", "Favor inserir apenas letras.");
+            throw new ErrosDaApiException("nome", "Favor inserir apenas letras.");
         }
 
         if (dadosPet.doenca().matches(".*\\d.*")) {
-            throw new NumeroEmStringException("doenca", "Favor inserir apenas letras.");
+            throw new ErrosDaApiException("doenca", "Favor inserir apenas letras.");
         }
 
         if (dadosPet.raca().matches(".*\\d.*")) {
-            throw new NumeroEmStringException("raca", "Favor inserir apenas letras.");
+            throw new ErrosDaApiException("raca", "Favor inserir apenas letras.");
         }
     }
 }

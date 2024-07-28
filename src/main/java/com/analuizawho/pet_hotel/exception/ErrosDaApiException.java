@@ -1,10 +1,10 @@
 package com.analuizawho.pet_hotel.exception;
 
-public class NumeroEmStringException extends RuntimeException{
+public class ErrosDaApiException extends RuntimeException{
 
     private final String campo;
 
-    public NumeroEmStringException(String campo, String exception) {
+    public ErrosDaApiException(String campo, String exception) {
         super(exception);
         this.campo = campo;
     }
