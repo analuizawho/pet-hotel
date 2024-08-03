@@ -74,7 +74,7 @@ public class PetController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Encontra um pet", description = "Endpoint para encontrar informações de um pet específico",
+    @Operation(summary = "Detalha um pet", description = "Endpoint para encontrar informações de um pet",
             tags = {"Pet"},
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
@@ -98,7 +98,7 @@ public class PetController {
 
     @PutMapping("/{id}")
     @Transactional
-    @Operation(summary = "Atualiza um pet", description = "Endpoint para atualizar informações de um pet específico",
+    @Operation(summary = "Atualiza um pet", description = "Endpoint para atualizar informações de um pet",
             tags = {"Pet"},
             responses = {
                     @ApiResponse(description = "Updated", responseCode = "200",
@@ -121,7 +121,7 @@ public class PetController {
 
     @PutMapping("reativar/{id}")
     @Transactional
-    @Operation(summary = "Reativa um pet", description = "Endpoint para reativar um pet específico",
+    @Operation(summary = "Reativa um pet", description = "Endpoint para reativar um pet",
             tags = {"Pet"},
             responses = {
                     @ApiResponse(description = "Success", responseCode = "200",
@@ -145,7 +145,7 @@ public class PetController {
 
     @DeleteMapping("inativar/{id}")
     @Transactional
-    @Operation(summary = "Inativa um pet", description = "Endpoint para inativar um pet específico",
+    @Operation(summary = "Inativa um pet", description = "Endpoint para inativar um pet",
             tags = {"Pet"},
             responses = {
                     @ApiResponse(description = "No Content", responseCode = "204", content = { @Content}),
@@ -162,7 +162,7 @@ public class PetController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    @Operation(summary = "Excluir um pet", description = "Endpoint para excluir um pet específico",
+    @Operation(summary = "Excluir um pet", description = "Endpoint para excluir um pet ",
             tags = {"Pet"},
             responses = {
                     @ApiResponse(description = "No Content", responseCode = "204", content = { @Content}),
