@@ -113,14 +113,6 @@ public class Pet {
         this.castracao = castracao;
     }
 
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -153,11 +145,11 @@ public class Pet {
         }
     }
 
-    public void inativar() {
+    public void setInativo() {
         this.ativo = false;
     }
 
-    public void reativar(){
+    public void setAtivo(){
         this.ativo = true;
     }
 }

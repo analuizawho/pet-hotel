@@ -23,32 +23,33 @@ public class PetService {
     PetMapper petMapper;
 
     public DadosDetalhamentoPet cadastrar(@RequestBody DadosCadastroPet dto){
-        var newPet = this.petMapper.paraPet(dto);
+        var newPet = petMapper.paraPet(dto);
         validarCampo(dto);
-        var pet = this.petRepository.save(newPet);
+        newPet.setAtivo();
+        var pet = petRepository.save(newPet);
 
         return petMapper.paraDetalhamento(pet);
     }
 
     public List<DadosListagemPet> listar(){
-        var pet = this.petRepository.findAll();
+        var pet = petRepository.findAllByAtivoTrue();
         return petMapper.paraListagemDTO(pet);
     }
 
     public DadosDetalhamentoPet atualizar(Long id, DadosAtualizarPet dto){
-        var pet = this.petRepository.getReferenceById(id);
+        var pet = petRepository.getReferenceById(id);
         pet.atualizarInformacoes(dto);
         pet = petRepository.save(pet);
         return petMapper.paraDetalhamento(pet);
     }
 
     public void reativar(Long id){
-        var pet = this.petRepository.getReferenceById(id);
-        pet.reativar();
+        var pet = petRepository.getReferenceById(id);
+        pet.setAtivo();
     }
 
     public DadosDetalhamentoPet detalhar(Long id){
-        var pet = this.petRepository.getReferenceById(id);
+        var pet = petRepository.getReferenceById(id);
         return petMapper.paraDetalhamento(pet);
     }
 
@@ -57,8 +58,8 @@ public class PetService {
     }
 
     public void inativar(Long id){
-        var pet = this.petRepository.getReferenceById(id);
-        pet.inativar();
+        var pet = petRepository.getReferenceById(id);
+        pet.setInativo();
     }
 
     private void validarCampo(DadosCadastroPet dadosPet) {
