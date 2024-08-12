@@ -71,6 +71,13 @@ public class HospedagemController {
         return ResponseEntity.ok(hospedagem);
     }
 
+
+    @GetMapping("filtrar-por-pet/{petId}")
+    public ResponseEntity<List<DadosListagemHospedagem>> listarPorPets(@PathVariable Long petId){
+        var hospedagem = hospedagemService.listarPorPets(petId);
+        return ResponseEntity.ok(hospedagem);
+    }
+
     @GetMapping("/{id}")
     @Operation(summary = "Detalha uma hospedagem", description = "Endpoint para encontrar informações de uma hospedagem",
             tags = {"Hospedagem"},

@@ -40,6 +40,11 @@ public class HospedagemService {
         return hospedagemMapper.paraListagem(hospedagem);
     }
 
+    public List<DadosListagemHospedagem> listarPorPets(Long petId){
+        var hospedagem = hospedagemRepository.findAllByPetId(petId);
+        return hospedagemMapper.paraListagem(hospedagem);
+    }
+
     public DadosDetalhamentoHospedagem detalhar(Long id){
         var hospedagem = hospedagemRepository.getReferenceById(id);
         return hospedagemMapper.paraDetalhamento(hospedagem);

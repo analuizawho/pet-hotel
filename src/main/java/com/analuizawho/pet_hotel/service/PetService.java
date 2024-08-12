@@ -1,9 +1,6 @@
 package com.analuizawho.pet_hotel.service;
 
-import com.analuizawho.pet_hotel.dto.DadosAtualizarPet;
-import com.analuizawho.pet_hotel.dto.DadosCadastroPet;
-import com.analuizawho.pet_hotel.dto.DadosDetalhamentoPet;
-import com.analuizawho.pet_hotel.dto.DadosListagemPet;
+import com.analuizawho.pet_hotel.dto.*;
 import com.analuizawho.pet_hotel.exception.ErrosDaApiException;
 import com.analuizawho.pet_hotel.mapper.PetMapper;
 import com.analuizawho.pet_hotel.repository.PetRepository;
