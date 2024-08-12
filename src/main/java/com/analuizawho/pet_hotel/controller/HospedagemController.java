@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/hospedagem")
+@RequestMapping("pet-hotel/hospedagem")
 @Tag(name = "Hospedagem", description = "Endpoint para o gerenciamento de hospedagens")
 public class HospedagemController {
 
@@ -71,7 +71,23 @@ public class HospedagemController {
         return ResponseEntity.ok(hospedagem);
     }
 
-
+    @Operation(summary = "Lista todas as hospedagens de um pet", description = "Endpoint para listar todas as" +
+            "hospedagens de um hóspede",
+            tags = {"Hospedagem"},
+            responses = {
+                    @ApiResponse(description = "Success", responseCode = "200",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = DadosListagemPet.class)
+                                            ))
+                            }),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
+            }
+    )
     @GetMapping("filtrar-por-pet/{petId}")
     public ResponseEntity<List<DadosListagemHospedagem>> listarPorPets(@PathVariable Long petId){
         var hospedagem = hospedagemService.listarPorPets(petId);

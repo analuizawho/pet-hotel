@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pet")
+@RequestMapping("pet-hotel/pet")
 @Tag(name = "Pet", description = "Endpoint para o gerenciamento de pets")
 public class PetController {
 
