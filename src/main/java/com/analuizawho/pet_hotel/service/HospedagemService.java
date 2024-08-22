@@ -7,6 +7,7 @@ import com.analuizawho.pet_hotel.exception.ErrosDaApiException;
 import com.analuizawho.pet_hotel.mapper.HospedagemMapper;
 import com.analuizawho.pet_hotel.repository.HospedagemRepository;
 import com.analuizawho.pet_hotel.repository.PetRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,7 @@ public class HospedagemService {
     @Autowired
     PetRepository petRepository;
 
+    @Transactional
     public DadosDetalhamentoHospedagem checkIn(DadosCheckInHospedagem dto){
         Pet pet = petRepository.findById(dto.petId())
                 .orElseThrow(() -> new ErrosDaApiException("petId", "Insira um petId válido"));
@@ -50,6 +52,7 @@ public class HospedagemService {
         return hospedagemMapper.paraDetalhamento(hospedagem);
     }
 
+    @Transactional
     public DadosDetalhamentoHospedagem atualizar(Long id, DadosAtualizarHospedagem dto){
         var hospedagem = hospedagemRepository.getReferenceById(id);
         hospedagem.atualizarInformacoes(dto);
@@ -58,6 +61,7 @@ public class HospedagemService {
         return hospedagemMapper.paraDetalhamento(hospedagem);
     }
 
+    @Transactional
     public DadosDetalhamentoHospedagem adicionarServicoExtra(Long id, DadosAtualizarServicoExtra dto){
         var hospedagem = hospedagemRepository.getReferenceById(id);
         hospedagem.atualizarServicoExtra(dto);
@@ -65,6 +69,7 @@ public class HospedagemService {
         return hospedagemMapper.paraDetalhamento(hospedagem);
     }
 
+    @Transactional
     public void excluir(Long id){
         hospedagemRepository.deleteById(id);
     }

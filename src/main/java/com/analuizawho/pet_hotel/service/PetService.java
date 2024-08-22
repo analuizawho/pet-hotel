@@ -4,6 +4,7 @@ import com.analuizawho.pet_hotel.dto.*;
 import com.analuizawho.pet_hotel.exception.ErrosDaApiException;
 import com.analuizawho.pet_hotel.mapper.PetMapper;
 import com.analuizawho.pet_hotel.repository.PetRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ public class PetService {
     @Autowired
     PetMapper petMapper;
 
+    @Transactional
     public DadosDetalhamentoPet cadastrar(@RequestBody DadosCadastroPet dto){
         var newPet = petMapper.paraPet(dto);
         validarCampo(dto);
@@ -33,6 +35,12 @@ public class PetService {
         return petMapper.paraListagemDTO(pet);
     }
 
+    public DadosDetalhamentoPet detalhar(Long id){
+        var pet = petRepository.getReferenceById(id);
+        return petMapper.paraDetalhamento(pet);
+    }
+
+    @Transactional
     public DadosDetalhamentoPet atualizar(Long id, DadosAtualizarPet dto){
         var pet = petRepository.getReferenceById(id);
         pet.atualizarInformacoes(dto);
@@ -40,20 +48,18 @@ public class PetService {
         return petMapper.paraDetalhamento(pet);
     }
 
+    @Transactional
     public void reativar(Long id){
         var pet = petRepository.getReferenceById(id);
         pet.setAtivo();
     }
 
-    public DadosDetalhamentoPet detalhar(Long id){
-        var pet = petRepository.getReferenceById(id);
-        return petMapper.paraDetalhamento(pet);
-    }
-
+    @Transactional
     public void excluir(Long id){
         petRepository.deleteById(id);
     }
 
+    @Transactional
     public void inativar(Long id){
         var pet = petRepository.getReferenceById(id);
         pet.setInativo();
