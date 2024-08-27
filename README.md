@@ -20,6 +20,12 @@ Uma API Rest de gestão de um hotel de pets feito com Java e SpringBoot.
 - Apache Maven 3.9.6
 - MySQL Server 8.0
 
+## 🔧 Ferramentas
+
+- IntelliJ IDEA
+- Postman
+- MySQL Workbench
+
 ## 🟢 Como Rodar
 
 ### Pré Requisitos
